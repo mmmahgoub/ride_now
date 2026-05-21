@@ -1,0 +1,72 @@
+version: '3.9'
+
+# Production override configuration for docker-compose.yml
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+
+services:
+  backend:
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+    restart: always
+    resources:
+      limits:
+        cpus: '1'
+        memory: 512M
+      reservations:
+        cpus: '0.5'
+        memory: 256M
+
+  mongodb:
+    restart: always
+    # Production: Enable authentication and backup
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+      - ./backups:/backups
+
+  frontend:
+    restart: always
+    environment:
+      - VITE_API_URL=https://api.yourdomain.com
+    resources:
+      limits:
+        cpus: '0.5'
+        memory: 256M
+
+  driver-app:
+    restart: always
+    environment:
+      - VITE_API_URL=https://api.yourdomain.com
+    resources:
+      limits:
+        cpus: '0.5'
+        memory: 256M
+
+  admin-dashboard:
+    restart: always
+    environment:
+      - VITE_API_URL=https://api.yourdomain.com
+    resources:
+      limits:
+        cpus: '0.5'
+        memory: 256M
+
+  # Optional: Nginx reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: taxi-booking-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+      - frontend
+      - driver-app
+      - admin-dashboard
+    networks:
+      - taxi-network

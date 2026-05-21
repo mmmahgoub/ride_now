@@ -1,0 +1,33 @@
+{
+  "name": "taxi-booking-platform",
+  "version": "1.0.0",
+  "description": "Full-stack taxi booking platform similar to Mowasalat",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "driver-app",
+    "admin-dashboard",
+    "shared"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm install --workspaces",
+    "dev:all": "npm run dev --workspaces",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:driver": "npm run dev --workspace=driver-app",
+    "dev:admin": "npm run dev --workspace=admin-dashboard",
+    "build:all": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces",
+    "test": "npm test --workspaces"
+  },
+  "keywords": [
+    "taxi",
+    "booking",
+    "ride-sharing",
+    "maps",
+    "real-time"
+  ],
+  "author": "",
+  "license": "MIT"
+}

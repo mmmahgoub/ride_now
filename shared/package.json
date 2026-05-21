@@ -1,0 +1,10 @@
+{
+  "name": "taxi-booking-shared",
+  "version": "1.0.0",
+  "description": "Shared utilities and types",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  }
+}
