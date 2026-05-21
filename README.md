@@ -1,6 +1,6 @@
 # 🚕 Taxi Booking Platform
 
-A full-stack taxi booking application similar to **Mowasalat/Karwa**, featuring real-time location tracking, distance calculation, and instant booking capabilities.
+A full-stack taxi booking application featuring real-time location tracking, distance calculation, and instant booking capabilities.
 
 ## 📋 Table of Contents
 
