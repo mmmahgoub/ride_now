@@ -388,4 +388,4 @@ For support, email support@taxibooking.com or open an issue on GitHub.
 
 ---
 
-**Made with ❤️ by the Taxi Booking Team**
+**Made with ServicePro Team**
