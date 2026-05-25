@@ -7,22 +7,29 @@ import Home from './pages/Home'
 import Booking from './pages/Booking'
 import BookingHistory from './pages/BookingHistory'
 import Profile from './pages/Profile'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import { AuthProvider } from './AuthContext'
 import './App.css'
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/history" element={<BookingHistory />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </div>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/booking" element={<Booking />} />
+              <Route path="/history" element={<BookingHistory />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </div>
+        </Router>
+      </AuthProvider>
     </Provider>
   )
 }

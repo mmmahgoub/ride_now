@@ -223,6 +223,8 @@ This will start:
 - Driver App on `http://localhost:5174`
 - Admin Dashboard on `http://localhost:5175`
 
+> Demo user flow: open the User Frontend at `http://localhost:5173`, register with a phone number beginning with `+974`, set a password, then login to view the demo booking history under `History`.
+
 ### Option 2: Run Services Individually
 
 ```bash

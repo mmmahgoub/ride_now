@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FiMenu, FiX, FiUser, FiLogOut } from 'react-icons/fi'
+import { useAuth } from '../AuthContext'
 import './Navbar.css'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { isLoggedIn, logoutUser } = useAuth()
+  const navigate = useNavigate()
 
   const toggleMenu = () => setIsOpen(!isOpen)
+  const handleLogout = () => {
+    logoutUser()
+    navigate('/login')
+  }
 
   return (
     <nav className="navbar">
@@ -30,12 +36,12 @@ const Navbar = () => {
               <Link to="/profile" className="nav-link">
                 <FiUser /> Profile
               </Link>
-              <button className="nav-btn logout-btn">
+              <button className="nav-btn logout-btn" onClick={handleLogout}>
                 <FiLogOut /> Logout
               </button>
             </>
           ) : (
-            <button className="nav-btn login-btn">Login</button>
+            <button className="nav-btn login-btn" onClick={() => navigate('/login')}>Login</button>
           )}
         </div>
       </div>

@@ -1,27 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useAuth, getDemoBookings } from '../AuthContext'
 import '../styles/BookingHistory.css'
 
 const BookingHistory = () => {
-  const [bookings] = React.useState([
-    {
-      id: 1,
-      date: '2024-01-15',
-      pickup: 'Downtown Mall',
-      dropoff: 'Airport Terminal',
-      fare: 45.50,
-      status: 'completed',
-      driver: 'Ahmed Khan'
-    },
-    {
-      id: 2,
-      date: '2024-01-14',
-      pickup: 'City Center',
-      dropoff: 'Hotel XYZ',
-      fare: 32.75,
-      status: 'completed',
-      driver: 'Mohammed Ali'
-    }
-  ])
+  const { currentUser, isLoggedIn } = useAuth()
+  const bookings = isLoggedIn ? getDemoBookings(currentUser.phone) : []
+
+  if (!isLoggedIn) {
+    return (
+      <div className="history-container">
+        <h1>Booking History</h1>
+        <p>Please <Link to="/login">login</Link> to view your demo booking history.</p>
+      </div>
+    )
+  }
 
   return (
     <div className="history-container">
